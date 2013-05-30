@@ -1,0 +1,21 @@
+diff -aurN ZThread-2.3.2.orig/include/zthread/Guard.h ZThread-2.3.2/include/zthread/Guard.h
+--- ZThread-2.3.2.orig/include/zthread/Guard.h	2013-05-24 22:42:23.017396666 +0200
++++ ZThread-2.3.2/include/zthread/Guard.h	2013-05-24 22:43:53.975855982 +0200
+@@ -428,7 +428,7 @@
+   template <class U, class V>
+   Guard(Guard<U, V>& g) : LockHolder<LockType>(g) {
+ 
+-    LockingPolicy::shareScope(*this, extract(g));
++    LockingPolicy::shareScope(*this, this->extract(g));
+     
+   }
+ 
+@@ -458,7 +458,7 @@
+   template <class U, class V>
+   Guard(Guard<U, V>& g, LockType& lock) : LockHolder<LockType>(lock) {
+ 
+-    LockingPolicy::transferScope(*this, extract(g));
++    LockingPolicy::transferScope(*this, this->extract(g));
+ 
+   }
+ 
